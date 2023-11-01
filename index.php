@@ -20,7 +20,13 @@ abstract class Equipment
     return  $speed;
   }
 
-  public function ability()
+  abstract public function ability();
+
+  public function wipers()
+  {
+  }
+
+  public function honk()
   {
   }
 }
@@ -31,6 +37,7 @@ class Tank extends Equipment implements IEquipmentAbility
   {
     return 'shoot';
   }
+  public $style = 'green';
 }
 
 class Excavator extends Equipment implements IEquipmentAbility
@@ -39,6 +46,7 @@ class Excavator extends Equipment implements IEquipmentAbility
   {
     return 'ladle';
   }
+  public $style = 'yellow';
 }
 
 class RacingCar extends Equipment implements IEquipmentAbility
@@ -47,6 +55,7 @@ class RacingCar extends Equipment implements IEquipmentAbility
   {
     return 'nitrousOxide';
   }
+  public $style = 'red';
 }
 
 function equipmentAction(Equipment $equipment)
@@ -54,12 +63,14 @@ function equipmentAction(Equipment $equipment)
   $equipment->driveForward(10);
   $equipment->driveBack(10);
   $equipment->ability();
+  $equipment->wipers();
+  $equipment->honk();
 }
 
 $tank = new Tank();
 $excavator = new Excavator();
 $racingCar = new RacingCar();
 
-equipmentAction($tank);
+echo equipmentAction($tank);
 equipmentAction($excavator);
 equipmentAction($racingCar);
